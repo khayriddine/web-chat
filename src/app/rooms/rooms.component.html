@@ -1,0 +1,11 @@
+<div class="example-box" fxLayout>
+<button mat-raised-button (click)="createRoom()">
+    Create Room
+</button>
+<button mat-raised-button color="accent" (click)="joinRoom()">
+    Join Room
+</button>
+</div>
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <app-room-info  *ngFor="let room of rooms" [room]="room"></app-room-info>
+  </div>

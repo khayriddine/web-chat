@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Members</h2>
+
+<mat-dialog-content class="mat-typography">
+    <mat-list *ngIf="users" dense class="conversation-history mat-typography">
+        <mat-list-item *ngFor="let user of users" dir="ltr">
+          <img matListAvatar [src]="user.image"/>
+          <p  dir="ltr">{{user.name}}</p>
+        </mat-list-item>
+      </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Exit</button>
+</mat-dialog-actions>

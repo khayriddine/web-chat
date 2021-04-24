@@ -1,0 +1,16 @@
+<div class="container" *ngIf="selectedRoom != null">
+    <mat-list dense class="conversation-history mat-typography">
+        <mat-list-item *ngFor="let msg of selectedRoom.allMsgs" [dir]="false ? 'rtl' : 'ltr'">
+          <img matListAvatar [matTooltip]="msg.user" [src]="msg.image"/>
+          <p  [dir]="'ltr'">{{msg.content}}</p>
+        </mat-list-item>
+      </mat-list>
+
+      <div class="conversation-input">
+        <mat-divider></mat-divider>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Start chatting..." name="text" >
+            <mat-icon matSuffix (click)="send()">send</mat-icon>
+          </mat-form-field>
+      </div>
+</div>

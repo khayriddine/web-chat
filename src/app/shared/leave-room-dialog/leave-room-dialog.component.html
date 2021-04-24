@@ -1,0 +1,11 @@
+<h2 *ngIf="user != null;else elseTitle"mat-dialog-title>Leave Room</h2>
+<ng-template #elseTitle><h2 mat-dialog-title>Remove Room</h2></ng-template>
+<mat-dialog-content class="mat-typography">
+    <p *ngIf="user != null;else elseP">Are you sure you want to Leave the Room</p>
+        <ng-template #elseP><p>Are you sure you want to Remove the Room</p></ng-template>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+    <button *ngIf="user != null;else elseButton" mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Leave</button>
+    <ng-template #elseButton><button  mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Remove</button></ng-template>
+</mat-dialog-actions>

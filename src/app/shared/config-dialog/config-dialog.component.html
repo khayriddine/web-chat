@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Connect to Server</h2>
+<mat-dialog-content class="mat-typography">
+<form action="">
+    <p fxLayout="row" fxLayoutGap="32px">
+        <mat-form-field appearance="outline">
+            <mat-label>Login</mat-label>
+            <input matInput  required>
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput  required>
+            <mat-icon matSuffix>lock</mat-icon>
+          </mat-form-field>
+    </p>
+    <p fxLayout fxLaoutAlign="center space-between">
+        <mat-form-field fxFlex appearance="fill"
+        hideRequiredMarker="true"
+        floatLabel="true">
+      <mat-select required>
+        <mat-option value="option">Signalr</mat-option>
+        <mat-option value="option">NATS</mat-option>
+        <mat-option value="option">Kafka</mat-option>
+      </mat-select>
+      <mat-label><mat-icon>power</mat-icon> <b>Server Type</b></mat-label>
+    </mat-form-field>
+    </p>
+    <p fxLayout="row" fxLayoutGap="32px">
+        <mat-form-field fxFlex appearance="outline">
+            <mat-label>Server Url</mat-label>
+            <input matInput  required>
+            <mat-icon matSuffix>settings_remote</mat-icon>
+          </mat-form-field>
+    </p>
+    <p fxLayout="row" fxLayoutGap="32px">
+        <mat-form-field fxFlex appearance="outline">
+            <mat-label>Server Credential</mat-label>
+            <textarea  matInput  required></textarea>
+          </mat-form-field>
+    </p>
+</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Connect</button>
+</mat-dialog-actions>

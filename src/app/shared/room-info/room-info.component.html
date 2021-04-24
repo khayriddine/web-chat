@@ -1,0 +1,14 @@
+<div class="example-box"  fxLayout="row" fxLayoutGap="2px" cdkDrag>
+    <div fxFlex="60%" fxLayout="row">
+        <mat-icon>lock_open</mat-icon><span >  {{room.name}}</span>
+    </div>
+    <button mat-icon-button  (click)="showConversation()">
+        <mat-icon matBadgeColor="warn" matBadgeSize="small" matBadge="{{room.unreadMsgs.length}}" [matBadgeHidden]="room.unreadMsgs.length == 0" >question_answer</mat-icon>
+    </button>
+    <button mat-icon-button  (click)="showUsers()">
+        <mat-icon matBadgeColor="primary" matBadgeSize="small" matBadge="{{room.users.length}}" [matBadgeHidden]="room.users.length == 0">person</mat-icon>
+    </button>
+    <button mat-icon-button  (click)="leaveRoom()">
+        <mat-icon>highlight_off</mat-icon>
+    </button>
+</div>
