@@ -10,6 +10,7 @@ import { NotificationDialogComponent } from './notification-dialog/notification-
 import { LeaveRoomDialogComponent } from './leave-room-dialog/leave-room-dialog.component';
 import { MembersDialogComponent } from './members-dialog/members-dialog.component';
 import { JoinRoomDialogComponent } from './join-room-dialog/join-room-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -27,6 +28,7 @@ import { JoinRoomDialogComponent } from './join-room-dialog/join-room-dialog.com
   ],
   imports: [
     CommonModule,
+    FormsModule,
     MaterialsModule
   ],
   exports: [

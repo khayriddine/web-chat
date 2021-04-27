@@ -8,6 +8,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class JoinRoomDialogComponent implements OnInit {
 
+  room: any = {
+    name: '',
+    password: ''
+  };
   constructor(public dialogRef:MatDialogRef<JoinRoomDialogComponent>) { }
 
   ngOnInit(): void {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Room } from 'src/app/models/room';
 
 @Component({
   selector: 'app-create-room-dialog',
@@ -7,10 +8,14 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./create-room-dialog.component.css']
 })
 export class CreateRoomDialogComponent implements OnInit {
-
+  room : any = {
+    name: '',
+    password: ''
+  };
   constructor(public dialogRef:MatDialogRef<CreateRoomDialogComponent>) { }
 
   ngOnInit(): void {
   }
+
 
 }

@@ -19,20 +19,27 @@ export class RoomInfoComponent implements OnInit {
               public dialog:MatDialog) { }
 
   ngOnInit(): void {
+    if(this.room.unreadMsgs == null)
+    {
+      this.room.unreadMsgs = [];
+    }
   }
   showUsers(){
     const dialogRef= this.dialog.open(MembersDialogComponent,{
       width:'400px',
       maxHeight: '500px',
-      data:this.room.users
+      data:this.room.members
     });
   }
   showConversation(){
     this.eventService.emitRoomSelected(this.room.roomId);
   }
   leaveRoom(){
-    const dialogRef = this.dialog.open(LeaveRoomDialogComponent, {
-      data:this.user
+    const dialogRef = this.dialog.open(LeaveRoomDialogComponent);
+    dialogRef.afterClosed().subscribe((result:boolean)=>{
+      if(result){
+        this.eventService.emitLeavingRoom(this.room);
+      }
     })
   }
 }

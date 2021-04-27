@@ -1,24 +1,21 @@
 <h2 mat-dialog-title>Join Room</h2>
 
 <mat-dialog-content class="mat-typography">
-    <form action="">
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Name</mat-label>
-                <input matInput  required>
-              </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput  required>
-                <mat-icon matSuffix>lock</mat-icon>
-              </mat-form-field>
-        </p>
-        
-    </form>
+  <p>
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="room.name" required>
+      </mat-form-field>
+</p>
+<p>
+    <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput [(ngModel)]="room.password" >
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+</p>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
       <button mat-raised-button mat-dialog-close>Cancel</button>
-      <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Join</button>
+      <button mat-raised-button color="primary" [mat-dialog-close]="room" cdkFocusInitial>Join</button>
     </mat-dialog-actions>

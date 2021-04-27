@@ -9,6 +9,9 @@ import { FriendsComponent } from './friends/friends.component';
 import { ConversationComponent } from './conversation/conversation.component';
 import { MaterialsModule } from './materials.module';
 import { RoomsComponent } from './rooms/rooms.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +23,8 @@ import { RoomsComponent } from './rooms/rooms.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     MaterialsModule,
     SharedModule

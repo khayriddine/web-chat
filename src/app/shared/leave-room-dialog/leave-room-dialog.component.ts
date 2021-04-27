@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user';
 })
 export class LeaveRoomDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<LeaveRoomDialogComponent>,@Inject(MAT_DIALOG_DATA) public user: User) { }
+  constructor(public dialogRef: MatDialogRef<LeaveRoomDialogComponent>) { }
 
   ngOnInit(): void {
   }

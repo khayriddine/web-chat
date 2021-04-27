@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -8,12 +9,15 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class ConnectionDialogComponent implements OnInit {
   titles = ['Sign In','Sign Up'];
+  user: any = {
+    name: '',
+    password: ''
+  };
   constructor(public dialogRef: MatDialogRef<ConnectionDialogComponent>) { }
 
   ngOnInit(): void {
   }
-  getTitle(){
-    return "Sign In";
+  titles_show(ind :number){
+    return this.titles[ind];
   }
-
 }

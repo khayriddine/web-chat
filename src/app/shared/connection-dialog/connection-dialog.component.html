@@ -1,50 +1,57 @@
-<h2 mat-dialog-title>{{titles[connectionTab.selectedIndex]}}</h2>
+<h2 mat-dialog-title>{{titles_show(connectionTab.selectedIndex)}}</h2>
 
 <mat-dialog-content class="mat-typography">
     <mat-tab-group #connectionTab>
         <mat-tab label="Sign In">
             <br>
-            <form action="">
-                <p>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Login</mat-label>
-                        <input matInput  required>
-                        <mat-icon matSuffix>person</mat-icon>
-                      </mat-form-field>
-                </p>
-                <p>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Password</mat-label>
-                        <input matInput  required>
-                        <mat-icon matSuffix>lock</mat-icon>
-                      </mat-form-field>
-                </p>
-                
-            </form>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Login</mat-label>
+                    <input matInput [(ngModel)]="user.name" required>
+                    <mat-icon matSuffix>person</mat-icon>
+                  </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput [(ngModel)]="user.password" required>
+                    <mat-icon matSuffix>lock</mat-icon>
+                  </mat-form-field>
+            </p>
         </mat-tab>
         <mat-tab label="Sign Up">
             <br>
-            <form action="">
-                <p>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Login</mat-label>
-                        <input matInput  required>
-                        <mat-icon matSuffix>person</mat-icon>
-                      </mat-form-field>
-                </p>
-                <p>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Password</mat-label>
-                        <input matInput  required>
-                        <mat-icon matSuffix>lock</mat-icon>
-                      </mat-form-field>
-                </p>
-                
-            </form>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Login</mat-label>
+                    <input matInput [(ngModel)]="user.name" required>
+                    <mat-icon matSuffix>person</mat-icon>
+                  </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput [(ngModel)]="user.password" required>
+                    <mat-icon matSuffix>lock</mat-icon>
+                  </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Select icon</mat-label>
+                    <mat-select [(ngModel)]="user.image">
+                      <mat-option value="https://randomuser.me/api/portraits/thumb/lego/1.jpg"><img src="https://randomuser.me/api/portraits/thumb/lego/1.jpg" alt=""></mat-option>
+                      <mat-option value="https://randomuser.me/api/portraits/thumb/lego/2.jpg"><img src="https://randomuser.me/api/portraits/thumb/lego/2.jpg" alt=""></mat-option>
+                      <mat-option value="https://randomuser.me/api/portraits/thumb/lego/3.jpg"><img src="https://randomuser.me/api/portraits/thumb/lego/3.jpg" alt=""></mat-option>
+                      <mat-option value="https://randomuser.me/api/portraits/thumb/lego/4.jpg"><img src="https://randomuser.me/api/portraits/thumb/lego/4.jpg" alt=""></mat-option>
+                      <mat-option value="https://randomuser.me/api/portraits/thumb/lego/5.jpg"><img src="https://randomuser.me/api/portraits/thumb/lego/5.jpg" alt=""></mat-option>
+                      <mat-option value="https://randomuser.me/api/portraits/thumb/lego/6.jpg"><img src="https://randomuser.me/api/portraits/thumb/lego/6.jpg" alt=""></mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </p>
         </mat-tab>
     </mat-tab-group>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
       <button mat-raised-button mat-dialog-close>Cancel</button>
-      <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Submit</button>
+      <button mat-raised-button color="primary" [mat-dialog-close]="user" cdkFocusInitial>Submit</button>
     </mat-dialog-actions>

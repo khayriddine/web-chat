@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Room } from '../models/room';
+import { environment as env } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
+const roomApiUrl = env.apiUrl + '/rooms';
 @Injectable({
   providedIn: 'root'
 })
 export class RoomService {
 
   rooms: Room[] = [
+    /*
     {
       name: 'my Room',
       roomId: '1',
@@ -77,10 +81,13 @@ export class RoomService {
         content: 'bye !',
         image: 'https://randomuser.me/api/portraits/thumb/lego/3.jpg'
       }],
-    }
+    }*/
   ]
-  constructor() { }
+  constructor(private http: HttpClient) { }
   getAllRooms(){
     return this.rooms;
+  }
+  create(room: Room){
+    return this.http.post<boolean>(roomApiUrl,room);
   }
 }

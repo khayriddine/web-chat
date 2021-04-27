@@ -2,10 +2,12 @@ import { User } from './user';
 import { Msg } from './msg';
 
 export class Room{
-    name: string;
+    
     roomId: string;
-    adminId: number;
-    users: User[];
+    adminId: string;
+    name: string;
+    password: string;
+    members: User[];
     allMsgs: Msg[];
     unreadMsgs: Msg[];
 }
