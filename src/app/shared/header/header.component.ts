@@ -49,5 +49,8 @@ export class HeaderComponent implements OnInit {
   logout(){
     this.eventService.emitUserDisconnect();
   }
+  loadAllMsgs(){
+    this.eventService.emitLoadAllMsgRequest();
+  }
 
 }

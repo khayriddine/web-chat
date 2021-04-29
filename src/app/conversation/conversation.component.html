@@ -1,16 +1,24 @@
 <div class="container" *ngIf="selectedRoom != null">
-    <mat-list dense class="conversation-history mat-typography">
-        <mat-list-item *ngFor="let msg of selectedRoom.allMsgs" [dir]="false ? 'rtl' : 'ltr'">
-          <img matListAvatar [matTooltip]="msg.user" [src]="msg.image"/>
-          <p  [dir]="'ltr'">{{msg.content}}</p>
-        </mat-list-item>
-      </mat-list>
 
+
+      
+      <div #ScrollMe style="overflow-y:auto; height:calc(100vh - 150px)"> 
+        <mat-list dense class="conversation-history mat-typography">
+          <mat-list-item *ngFor="let msg of selectedRoom.allMsgs" [dir]="(name == msg.name) ? 'rtl' : 'ltr'">
+            <img matListAvatar [matTooltip]="msg.user" [src]="msg.image"/>
+            <p  [dir]="(name == msg.name) ? 'rtl' : 'ltr'">{{msg.content}}</p>
+          </mat-list-item>
+        </mat-list>
+      </div>
       <div class="conversation-input">
         <mat-divider></mat-divider>
-        <mat-form-field class="full-width">
-            <input matInput placeholder="Start chatting..." name="text" >
-            <mat-icon matSuffix (click)="send()">send</mat-icon>
+        <p fxLayout>
+          <mat-form-field fxFlex="90%">
+            <input matInput [(ngModel)]="message" placeholder="Start chatting..." name="text" >
           </mat-form-field>
+          <button fxFlex="10%" mat-icon-button (click)="send()" matSuffix><mat-icon>send</mat-icon></button>
+          
+        </p>
+        
       </div>
 </div>

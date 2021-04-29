@@ -1,5 +1,5 @@
 export class Msg{
-    user: string;
+    name: string;
     image: string;
     content: string;
 }

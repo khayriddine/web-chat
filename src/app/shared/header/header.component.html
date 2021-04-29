@@ -4,6 +4,9 @@
     </button>
     <span>Web Chat</span>
     <span class="spacer"></span>
+    <button mat-icon-button (click)="loadAllMsgs()">
+        <mat-icon>refresh</mat-icon>
+    </button>
     <button mat-icon-button>
         <mat-icon>notifications</mat-icon>
     </button>
@@ -14,7 +17,7 @@
         <mat-icon>account_circle</mat-icon>
     </button>
     <ng-template #dis>
-        <button mat-button [matMenuTriggerFor]="disconnect"><mat-icon>account_circle</mat-icon></button>
+        <button mat-icon-button [matMenuTriggerFor]="disconnect"><mat-icon>account_circle</mat-icon></button>
         <mat-menu #disconnect="matMenu">
             <button mat-menu-item (click)="logout()">Disconnect</button>
             </mat-menu>

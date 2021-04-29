@@ -24,6 +24,9 @@ export class EventService {
   private roomEvt = new Subject<{name : string,room: Room}>();
   public roomEvt$ = this.roomEvt.asObservable();
 
+  private msg = new Subject<{roomId:string,msg: string}>();
+  public msg$ = this.msg.asObservable();
+
   constructor() {
    }
 
@@ -39,6 +42,9 @@ export class EventService {
    emitUserDisconnect(){
      this.notif.next('disconnect');
    }
+   emitLoadAllMsgRequest(){
+    this.notif.next('load');
+   }
    emitRoomCreated(room: Room){
     this.roomEvt.next({name:'creation',room});
    }
@@ -50,5 +56,8 @@ export class EventService {
   }
   emitNotif(msg:string){
     this.notif.next(msg);
+  }
+  emitMessageSent(roomId:string,msg: string){
+      this.msg.next({roomId,msg});
   }
   }

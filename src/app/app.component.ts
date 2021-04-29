@@ -10,6 +10,7 @@ import { User } from './models/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserCredential } from './models/user-credential';
 import { stringify } from '@angular/compiler/src/util';
+import { Msg } from './models/msg';
 
 @Component({
   selector: 'app-root',
@@ -33,12 +34,13 @@ export class AppComponent implements OnInit {
               private chatService: ChatService) { }
 
   ngOnInit(): void {
+    this.chatService.startConnection();
+    this.chatService.addSubscriptions();
     this.user = JSON.parse(sessionStorage.getItem("user"));
-    if(this.user != null){
-      this.rooms = this.roomService.getAllRooms();
-    }
+
     this.subscriptions.add(this.eventService.selectedRoom$.subscribe((r: string)=>{
-      this.selectedRoom = this.rooms.find(ro => ro.roomId == r); 
+      this.toggle();
+      this.selectedRoom = this.user.rooms.find(ro => ro.roomId == r); 
       if(this.selectedRoom != null){
         if(this.selectedRoom.unreadMsgs != null && this.selectedRoom.unreadMsgs.length > 0)
         {
@@ -71,6 +73,42 @@ export class AppComponent implements OnInit {
             this.updateUserRelatedInfo(user);
           })
         }
+        else if(msg == 'load'){
+          if(this.selectedRoom != null){
+            this.chatService.loadAllMsg(this.selectedRoom.roomId);
+          }
+        }
+    }));
+    this.subscriptions.add(this.eventService.msg$.subscribe(({roomId,msg})=>{
+      let message : Msg = {
+        name: this.user.name,
+        content: msg,
+        image: this.user.image,
+      }
+      this.chatService.sendMsg(this.user.userId,roomId,message);
+    }));
+    this.subscriptions.add(this.chatService.msgs$.subscribe(({roomId,msgs})=>{
+      console.log(msgs);
+      if(this.selectedRoom != null && this.selectedRoom.roomId == roomId){
+        this.selectedRoom.allMsgs = [];
+        this.selectedRoom.allMsgs.push(...msgs);
+      }
+      
+    }));
+    this.subscriptions.add(this.chatService.msg$.subscribe(({roomId,msg})=>{
+      if(this.selectedRoom != null && this.selectedRoom.roomId == roomId){
+        if(this.selectedRoom.allMsgs == null)
+        this.selectedRoom.allMsgs = [];
+        this.selectedRoom.allMsgs.push(msg);
+      }else {
+        var ro = this.user.rooms.find(r => r.roomId == roomId);
+        if(ro != null){
+          if(this.user.rooms[roomId].unreadMsgs == null)
+            this.user.rooms[roomId].unreadMsgs = [];
+            this.user.rooms[roomId].unreadMsgs.push(msg);
+        }
+      }
+      
     }));
     this.subscriptions.add(this.eventService.roomEvt$.subscribe((roomEvt)=>{
       if(roomEvt.name == 'creation'){
@@ -78,6 +116,7 @@ export class AppComponent implements OnInit {
         this.roomService.create(roomEvt.room).subscribe((result: boolean)=>{
           if(result == true){
             this.userService.getUser(this.user.userId).subscribe((user: User)=>{
+              
               this.updateUserRelatedInfo(user);
             })
           }
@@ -102,12 +141,13 @@ export class AppComponent implements OnInit {
         })
       }
     }));
-    
+
   }
   updateUserRelatedInfo(user: User){
     console.log(user);
     this.user = user;
     sessionStorage.setItem("user",JSON.stringify(user));
+    this.chatService.addMember(this.user.userId);
   }
   toggle(){
     if(this.user == null){

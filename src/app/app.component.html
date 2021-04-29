@@ -4,6 +4,6 @@
     <app-rooms *ngIf="user" [rooms]="user.rooms" ></app-rooms>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-conversation [selectedRoom]="selectedRoom"></app-conversation>
+    <app-conversation [selectedRoom]="selectedRoom" [name]="user.name"></app-conversation>
   </mat-sidenav-content>
 </mat-sidenav-container>
