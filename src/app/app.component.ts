@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserCredential } from './models/user-credential';
 import { stringify } from '@angular/compiler/src/util';
 import { Msg } from './models/msg';
+import { AzureSignalrChatService } from './services/azure-signalr-chat.service';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit {
               private eventService: EventService,
               private userService: UserService,
               private roomService: RoomService,
-              private chatService: ChatService) { }
+              private chatService: AzureSignalrChatService) { }
 
   ngOnInit(): void {
     this.chatService.startConnection();
@@ -88,7 +89,6 @@ export class AppComponent implements OnInit {
       this.chatService.sendMsg(this.user.userId,roomId,message);
     }));
     this.subscriptions.add(this.chatService.msgs$.subscribe(({roomId,msgs})=>{
-      console.log(msgs);
       if(this.selectedRoom != null && this.selectedRoom.roomId == roomId){
         this.selectedRoom.allMsgs = [];
         this.selectedRoom.allMsgs.push(...msgs);
@@ -141,10 +141,8 @@ export class AppComponent implements OnInit {
         })
       }
     }));
-
   }
   updateUserRelatedInfo(user: User){
-    console.log(user);
     this.user = user;
     sessionStorage.setItem("user",JSON.stringify(user));
     this.chatService.addMember(this.user.userId);
