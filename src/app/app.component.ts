@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
               private eventService: EventService,
               private userService: UserService,
               private roomService: RoomService,
-              private chatService: ChatService) { }
+              private chatService: AzureSignalrChatService) { }
 
   ngOnInit(): void {
     this.chatService.startConnection();
