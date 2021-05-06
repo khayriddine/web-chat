@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
               private chatService: ChatService) { }
 
   ngOnInit(): void {
+    
     this.chatService.startConnection();
     this.chatService.addSubscriptions();
     this.user = JSON.parse(sessionStorage.getItem("user"));

@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
 import { Subject } from 'rxjs';
 import { Msg } from '../models/msg';
+import { environment as env } from '../../environments/environment';
+
+const chatApiUrl = env.apiUrl + '/chat';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +23,7 @@ export class ChatService {
 
   public startConnection(){
     this.hubConnection = new signalR.HubConnectionBuilder()
-                          .withUrl("https://localhost:5001/chat")
+                          .withUrl(chatApiUrl)
                           .build();
     this.hubConnection.start()
                       .then(() => console.log("Connected !"))
